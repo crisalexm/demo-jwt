@@ -30,7 +30,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         if (token != null) {
             try {
-                System.out.println("Validando token..");
                 Claims claims = Jwts.parser()
                         .setSigningKey(secretKey)
                         .parseClaimsJws(token)
@@ -41,7 +40,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                 // Establecer Authentication en el contexto de seguridad
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-                System.out.println("Token válido");
             } catch (Exception e) {
                 // Manejo de excepción para token inválido, expirado, etc.
                 System.out.println("Error al validar token" + e.getMessage());
