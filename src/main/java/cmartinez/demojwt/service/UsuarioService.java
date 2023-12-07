@@ -1,11 +1,16 @@
 package cmartinez.demojwt.service;
 
+import cmartinez.demojwt.dto.AuthResponse;
 import cmartinez.demojwt.entity.UsuarioEntity;
 import cmartinez.demojwt.exception.UserValidationException;
 import cmartinez.demojwt.repository.UsuarioRepository;
 import cmartinez.demojwt.service.JWT.JwtUtil;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -13,6 +18,7 @@ import java.util.Optional;
 import java.util.regex.Pattern;
 
 @Service
+@RequiredArgsConstructor
 public class UsuarioService {
     @Autowired
     private JwtUtil jwtUtil;
@@ -22,7 +28,6 @@ public class UsuarioService {
 
     @Value("${usuario.email.regex}")
     private String emailRegex;
-
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -40,6 +45,7 @@ public class UsuarioService {
             throw new UserValidationException("El correo electrónico ya está en uso.");
         }
 
+        usuario.setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
         // Establecer las fechas
         Date now = new Date();
         usuario.setCreated(now);
@@ -54,6 +60,20 @@ public class UsuarioService {
         usuario.setToken(token);
 
         return usuarioRepository.save(usuario);
+    }
+
+    public AuthResponse autenticarUsuario(String email, String password) {
+
+        UsuarioEntity usuario = usuarioRepository.findByEmail(email)
+                .orElseThrow(() -> new UserValidationException("Usuario no encontrado o contraseña incorrecta"));
+
+        if (!new BCryptPasswordEncoder().matches(password, usuario.getPassword())) {
+            throw new UserValidationException("Usuario no encontrado o contraseña incorrecta");
+        }
+        String token = jwtUtil.generateToken(usuario.getEmail());
+        return AuthResponse.builder()
+                .jwt(token)
+                .build();
     }
 
     public boolean isValidPassword(String password) {
