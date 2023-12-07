@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Embeddable
 @Data
-public class Telefono {
+public class TelefonoEntity {
     @NotBlank(message = "El número es requerido")
     private String number;
     @NotBlank(message = "El código de ciudad es requerido")

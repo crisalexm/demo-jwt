@@ -35,7 +35,7 @@ public class UsuarioEntity {
     @Valid
     @ElementCollection
     @CollectionTable(name = "telefono", joinColumns = @JoinColumn(name = "user_id"))
-    private List<Telefono> phones;
+    private List<TelefonoEntity> phones;
 
     @Column(name = "created")
     private Date created;
