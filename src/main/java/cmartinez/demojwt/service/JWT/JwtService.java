@@ -5,10 +5,9 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.Base64;
 import java.util.Date;
 @Service
-public class JwtUtil {
+public class JwtService {
 
     @Value("${SECRET_KEY}")
     String secretKey;

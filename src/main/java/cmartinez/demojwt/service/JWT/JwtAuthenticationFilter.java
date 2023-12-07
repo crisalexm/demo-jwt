@@ -1,4 +1,4 @@
-package cmartinez.demojwt.jwt;
+package cmartinez.demojwt.service.JWT;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

@@ -1,5 +1,5 @@
 package cmartinez.demojwt.config;
-import cmartinez.demojwt.jwt.JwtAuthenticationFilter;
+import cmartinez.demojwt.service.JWT.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,8 +17,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        System.out.println("Configurando seguridad");
-                http
+            http
                 .csrf(csrf ->
                     csrf.disable())
                 .authorizeHttpRequests(authorize ->
@@ -26,6 +25,6 @@ public class SecurityConfig {
                         .requestMatchers("auth/**").permitAll()
                         .anyRequest().authenticated()
                         ).addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-        return http.build();
+            return http.build();
     }
 }

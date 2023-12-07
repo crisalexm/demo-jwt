@@ -1,5 +1,6 @@
 package cmartinez.demojwt.entity;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
@@ -18,23 +19,22 @@ public class UsuarioEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
+
+    @NotBlank(message = "El nombre es requerido")
     @Column(name = "name")
     private String name;
 
-    @NotEmpty(message = "El email es requerido")
+    @NotBlank(message = "El email es requerido")
     private String email;
 
     @NotBlank(message = "El password es requerido")
     @Column(name = "password")
     private String password;
 
+    @NotEmpty(message = "La lista de teléfonos no puede estar vacía")
+    @Valid
     @ElementCollection
     @CollectionTable(name = "telefono", joinColumns = @JoinColumn(name = "user_id"))
-    @AttributeOverrides({
-            @AttributeOverride(name = "number", column = @Column(name = "numero")),
-            @AttributeOverride(name = "citycode", column = @Column(name = "codigo_ciudad")),
-            @AttributeOverride(name = "contrycode", column = @Column(name = "codigo_pais"))
-    })
     private List<Telefono> phones;
 
     @Column(name = "created")

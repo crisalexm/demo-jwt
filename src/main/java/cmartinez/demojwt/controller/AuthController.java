@@ -2,9 +2,7 @@ package cmartinez.demojwt.controller;
 
 import cmartinez.demojwt.dto.AuthResponse;
 import cmartinez.demojwt.dto.LoginDTO;
-import cmartinez.demojwt.exception.UserValidationException;
 import cmartinez.demojwt.service.AuthService;
-import cmartinez.demojwt.service.UsuarioService;
 import cmartinez.demojwt.entity.UsuarioEntity;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,23 +15,20 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
-public class UsuarioController {
+public class AuthController {
 
     @Autowired
-    private UsuarioService usuarioService;
-
-
+    private AuthService authService;
 
     @PostMapping("/login")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody LoginDTO request) {
-        AuthResponse jwt = usuarioService.autenticarUsuario(request.getEmail(), request.getPassword());
-        return ResponseEntity.ok(jwt);
+        AuthResponse jwt = authService.autenticarUsuario(request.getEmail(), request.getPassword());
+        return ResponseEntity.status(HttpStatus.OK).body(jwt);
     }
-
 
     @PostMapping("/register")
     public ResponseEntity<?> registrarUsuario(@Valid @RequestBody UsuarioEntity usuario) {
-            UsuarioEntity usuarioCreado = usuarioService.crearUsuario(usuario);
+            UsuarioEntity usuarioCreado = authService.crearUsuario(usuario);
             return ResponseEntity.status(HttpStatus.CREATED).body(usuarioCreado);
     }
 }
