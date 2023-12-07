@@ -11,8 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.Optional;
+import java.util.*;
 import java.util.regex.Pattern;
 
 @Service
@@ -72,6 +71,13 @@ public class AuthService {
         return AuthResponse.builder()
                 .jwt(token)
                 .build();
+    }
+    public Map<String, Object> getAllUsers() {
+        List<UsuarioEntity> users = usuarioRepository.findAll();
+        Map<String, Object> response = new HashMap<>();
+        response.put("count", users.size());
+        response.put("users", users);
+        return response;
     }
 
     public boolean isValidPassword(String password) {
