@@ -1,0 +1,816 @@
+{
+	"info": {
+		"_postman_id": "6d2e857c-7c2c-4db9-86a5-bf0fb6efef1b",
+		"name": "Pruebas tecnicas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26173913",
+		"_collection_link": "https://lively-satellite-658048.postman.co/workspace/localHost~19999b13-72e7-4117-aad1-3eac232f8e92/collection/26173913-6d2e857c-7c2c-4db9-86a5-bf0fb6efef1b?action=share&source=collection_link&creator=26173913"
+	},
+	"item": [
+		{
+			"name": "muruna",
+			"item": [
+				{
+					"name": "registro",
+					"item": [
+						{
+							"name": "Validaciones",
+							"item": [
+								{
+									"name": "Expresion regular",
+									"item": [
+										{
+											"name": "email",
+											"item": [
+												{
+													"name": "auth/register",
+													"request": {
+														"method": "POST",
+														"header": [],
+														"body": {
+															"mode": "raw",
+															"raw": "{\r\n  \"name\": \"Juan Perez\",\r\n  \"email\": \"cristhiangmail.com\",\r\n  \"password\": \"Test@123\",\r\n  \"phones\": [\r\n    {\r\n      \"number\": \"12345678\",\r\n      \"citycode\": \"1\",\r\n      \"contrycode\": \"57\"\r\n    }\r\n  ]\r\n}",
+															"options": {
+																"raw": {
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "http://localhost:8080/auth/register",
+															"protocol": "http",
+															"host": [
+																"localhost"
+															],
+															"port": "8080",
+															"path": [
+																"auth",
+																"register"
+															]
+														}
+													},
+													"response": [
+														{
+															"name": "email sin punto",
+															"originalRequest": {
+																"method": "POST",
+																"header": [],
+																"body": {
+																	"mode": "raw",
+																	"raw": "{\r\n  \"name\": \"Juan Perez\",\r\n  \"email\": \"cristhian@gmailcom\",\r\n  \"password\": \"Test@123\",\r\n  \"phones\": [\r\n    {\r\n      \"number\": \"12345678\",\r\n      \"citycode\": \"1\",\r\n      \"contrycode\": \"57\"\r\n    }\r\n  ]\r\n}",
+																	"options": {
+																		"raw": {
+																			"language": "json"
+																		}
+																	}
+																},
+																"url": {
+																	"raw": "http://localhost:8080/auth/register",
+																	"protocol": "http",
+																	"host": [
+																		"localhost"
+																	],
+																	"port": "8080",
+																	"path": [
+																		"auth",
+																		"register"
+																	]
+																}
+															},
+															"status": "Bad Request",
+															"code": 400,
+															"_postman_previewlanguage": "json",
+															"header": [
+																{
+																	"key": "Vary",
+																	"value": "Origin"
+																},
+																{
+																	"key": "Vary",
+																	"value": "Access-Control-Request-Method"
+																},
+																{
+																	"key": "Vary",
+																	"value": "Access-Control-Request-Headers"
+																},
+																{
+																	"key": "X-Content-Type-Options",
+																	"value": "nosniff"
+																},
+																{
+																	"key": "X-XSS-Protection",
+																	"value": "0"
+																},
+																{
+																	"key": "Cache-Control",
+																	"value": "no-cache, no-store, max-age=0, must-revalidate"
+																},
+																{
+																	"key": "Pragma",
+																	"value": "no-cache"
+																},
+																{
+																	"key": "Expires",
+																	"value": "0"
+																},
+																{
+																	"key": "X-Frame-Options",
+																	"value": "DENY"
+																},
+																{
+																	"key": "Content-Type",
+																	"value": "application/json"
+																},
+																{
+																	"key": "Transfer-Encoding",
+																	"value": "chunked"
+																},
+																{
+																	"key": "Date",
+																	"value": "Thu, 07 Dec 2023 05:14:12 GMT"
+																},
+																{
+																	"key": "Connection",
+																	"value": "close"
+																}
+															],
+															"cookie": [],
+															"body": "{\n    \"mensaje\": \"Correo electrónico inválido.\"\n}"
+														},
+														{
+															"name": "email sin @",
+															"originalRequest": {
+																"method": "POST",
+																"header": [],
+																"body": {
+																	"mode": "raw",
+																	"raw": "{\r\n  \"name\": \"Juan Perez\",\r\n  \"email\": \"cristhiangmail.com\",\r\n  \"password\": \"Test@123\",\r\n  \"phones\": [\r\n    {\r\n      \"number\": \"12345678\",\r\n      \"citycode\": \"1\",\r\n      \"contrycode\": \"57\"\r\n    }\r\n  ]\r\n}",
+																	"options": {
+																		"raw": {
+																			"language": "json"
+																		}
+																	}
+																},
+																"url": {
+																	"raw": "http://localhost:8080/auth/register",
+																	"protocol": "http",
+																	"host": [
+																		"localhost"
+																	],
+																	"port": "8080",
+																	"path": [
+																		"auth",
+																		"register"
+																	]
+																}
+															},
+															"status": "Bad Request",
+															"code": 400,
+															"_postman_previewlanguage": "json",
+															"header": [
+																{
+																	"key": "Vary",
+																	"value": "Origin"
+																},
+																{
+																	"key": "Vary",
+																	"value": "Access-Control-Request-Method"
+																},
+																{
+																	"key": "Vary",
+																	"value": "Access-Control-Request-Headers"
+																},
+																{
+																	"key": "X-Content-Type-Options",
+																	"value": "nosniff"
+																},
+																{
+																	"key": "X-XSS-Protection",
+																	"value": "0"
+																},
+																{
+																	"key": "Cache-Control",
+																	"value": "no-cache, no-store, max-age=0, must-revalidate"
+																},
+																{
+																	"key": "Pragma",
+																	"value": "no-cache"
+																},
+																{
+																	"key": "Expires",
+																	"value": "0"
+																},
+																{
+																	"key": "X-Frame-Options",
+																	"value": "DENY"
+																},
+																{
+																	"key": "Content-Type",
+																	"value": "application/json"
+																},
+																{
+																	"key": "Transfer-Encoding",
+																	"value": "chunked"
+																},
+																{
+																	"key": "Date",
+																	"value": "Thu, 07 Dec 2023 05:14:44 GMT"
+																},
+																{
+																	"key": "Connection",
+																	"value": "close"
+																}
+															],
+															"cookie": [],
+															"body": "{\n    \"mensaje\": \"Correo electrónico inválido.\"\n}"
+														}
+													]
+												}
+											]
+										},
+										{
+											"name": "password",
+											"item": [
+												{
+													"name": "auth/register",
+													"request": {
+														"method": "POST",
+														"header": [],
+														"body": {
+															"mode": "raw",
+															"raw": "{\r\n  \"name\": \"Juan Perez\",\r\n  \"email\": \"cristhian@gmail.com\",\r\n  \"password\": \"4567@123\",\r\n  \"phones\": [\r\n    {\r\n      \"number\": \"12345678\",\r\n      \"citycode\": \"1\",\r\n      \"contrycode\": \"57\"\r\n    }\r\n  ]\r\n}",
+															"options": {
+																"raw": {
+																	"language": "json"
+																}
+															}
+														},
+														"url": {
+															"raw": "http://localhost:8080/auth/register",
+															"protocol": "http",
+															"host": [
+																"localhost"
+															],
+															"port": "8080",
+															"path": [
+																"auth",
+																"register"
+															]
+														}
+													},
+													"response": [
+														{
+															"name": "sin los 8 caracteres",
+															"originalRequest": {
+																"method": "POST",
+																"header": [],
+																"body": {
+																	"mode": "raw",
+																	"raw": "{\r\n  \"name\": \"Juan Perez\",\r\n  \"email\": \"cristhian@gmail.com\",\r\n  \"password\": \"Test@12\",\r\n  \"phones\": [\r\n    {\r\n      \"number\": \"12345678\",\r\n      \"citycode\": \"1\",\r\n      \"contrycode\": \"57\"\r\n    }\r\n  ]\r\n}",
+																	"options": {
+																		"raw": {
+																			"language": "json"
+																		}
+																	}
+																},
+																"url": {
+																	"raw": "http://localhost:8080/auth/register",
+																	"protocol": "http",
+																	"host": [
+																		"localhost"
+																	],
+																	"port": "8080",
+																	"path": [
+																		"auth",
+																		"register"
+																	]
+																}
+															},
+															"status": "Bad Request",
+															"code": 400,
+															"_postman_previewlanguage": "json",
+															"header": [
+																{
+																	"key": "Vary",
+																	"value": "Origin"
+																},
+																{
+																	"key": "Vary",
+																	"value": "Access-Control-Request-Method"
+																},
+																{
+																	"key": "Vary",
+																	"value": "Access-Control-Request-Headers"
+																},
+																{
+																	"key": "X-Content-Type-Options",
+																	"value": "nosniff"
+																},
+																{
+																	"key": "X-XSS-Protection",
+																	"value": "0"
+																},
+																{
+																	"key": "Cache-Control",
+																	"value": "no-cache, no-store, max-age=0, must-revalidate"
+																},
+																{
+																	"key": "Pragma",
+																	"value": "no-cache"
+																},
+																{
+																	"key": "Expires",
+																	"value": "0"
+																},
+																{
+																	"key": "X-Frame-Options",
+																	"value": "DENY"
+																},
+																{
+																	"key": "Content-Type",
+																	"value": "application/json"
+																},
+																{
+																	"key": "Transfer-Encoding",
+																	"value": "chunked"
+																},
+																{
+																	"key": "Date",
+																	"value": "Thu, 07 Dec 2023 05:19:00 GMT"
+																},
+																{
+																	"key": "Connection",
+																	"value": "close"
+																}
+															],
+															"cookie": [],
+															"body": "{\n    \"mensaje\": \"Contraseña inválida.\"\n}"
+														},
+														{
+															"name": "sin numeros",
+															"originalRequest": {
+																"method": "POST",
+																"header": [],
+																"body": {
+																	"mode": "raw",
+																	"raw": "{\r\n  \"name\": \"Juan Perez\",\r\n  \"email\": \"cristhian@gmail.com\",\r\n  \"password\": \"Test@\",\r\n  \"phones\": [\r\n    {\r\n      \"number\": \"12345678\",\r\n      \"citycode\": \"1\",\r\n      \"contrycode\": \"57\"\r\n    }\r\n  ]\r\n}",
+																	"options": {
+																		"raw": {
+																			"language": "json"
+																		}
+																	}
+																},
+																"url": {
+																	"raw": "http://localhost:8080/auth/register",
+																	"protocol": "http",
+																	"host": [
+																		"localhost"
+																	],
+																	"port": "8080",
+																	"path": [
+																		"auth",
+																		"register"
+																	]
+																}
+															},
+															"status": "Bad Request",
+															"code": 400,
+															"_postman_previewlanguage": "json",
+															"header": [
+																{
+																	"key": "Vary",
+																	"value": "Origin"
+																},
+																{
+																	"key": "Vary",
+																	"value": "Access-Control-Request-Method"
+																},
+																{
+																	"key": "Vary",
+																	"value": "Access-Control-Request-Headers"
+																},
+																{
+																	"key": "X-Content-Type-Options",
+																	"value": "nosniff"
+																},
+																{
+																	"key": "X-XSS-Protection",
+																	"value": "0"
+																},
+																{
+																	"key": "Cache-Control",
+																	"value": "no-cache, no-store, max-age=0, must-revalidate"
+																},
+																{
+																	"key": "Pragma",
+																	"value": "no-cache"
+																},
+																{
+																	"key": "Expires",
+																	"value": "0"
+																},
+																{
+																	"key": "X-Frame-Options",
+																	"value": "DENY"
+																},
+																{
+																	"key": "Content-Type",
+																	"value": "application/json"
+																},
+																{
+																	"key": "Transfer-Encoding",
+																	"value": "chunked"
+																},
+																{
+																	"key": "Date",
+																	"value": "Thu, 07 Dec 2023 05:19:31 GMT"
+																},
+																{
+																	"key": "Connection",
+																	"value": "close"
+																}
+															],
+															"cookie": [],
+															"body": "{\n    \"mensaje\": \"Contraseña inválida.\"\n}"
+														},
+														{
+															"name": "sin caracter especial",
+															"originalRequest": {
+																"method": "POST",
+																"header": [],
+																"body": {
+																	"mode": "raw",
+																	"raw": "{\r\n  \"name\": \"Juan Perez\",\r\n  \"email\": \"cristhian@gmail.com\",\r\n  \"password\": \"Test1234\",\r\n  \"phones\": [\r\n    {\r\n      \"number\": \"12345678\",\r\n      \"citycode\": \"1\",\r\n      \"contrycode\": \"57\"\r\n    }\r\n  ]\r\n}",
+																	"options": {
+																		"raw": {
+																			"language": "json"
+																		}
+																	}
+																},
+																"url": {
+																	"raw": "http://localhost:8080/auth/register",
+																	"protocol": "http",
+																	"host": [
+																		"localhost"
+																	],
+																	"port": "8080",
+																	"path": [
+																		"auth",
+																		"register"
+																	]
+																}
+															},
+															"status": "Bad Request",
+															"code": 400,
+															"_postman_previewlanguage": "json",
+															"header": [
+																{
+																	"key": "Vary",
+																	"value": "Origin"
+																},
+																{
+																	"key": "Vary",
+																	"value": "Access-Control-Request-Method"
+																},
+																{
+																	"key": "Vary",
+																	"value": "Access-Control-Request-Headers"
+																},
+																{
+																	"key": "X-Content-Type-Options",
+																	"value": "nosniff"
+																},
+																{
+																	"key": "X-XSS-Protection",
+																	"value": "0"
+																},
+																{
+																	"key": "Cache-Control",
+																	"value": "no-cache, no-store, max-age=0, must-revalidate"
+																},
+																{
+																	"key": "Pragma",
+																	"value": "no-cache"
+																},
+																{
+																	"key": "Expires",
+																	"value": "0"
+																},
+																{
+																	"key": "X-Frame-Options",
+																	"value": "DENY"
+																},
+																{
+																	"key": "Content-Type",
+																	"value": "application/json"
+																},
+																{
+																	"key": "Transfer-Encoding",
+																	"value": "chunked"
+																},
+																{
+																	"key": "Date",
+																	"value": "Thu, 07 Dec 2023 05:19:50 GMT"
+																},
+																{
+																	"key": "Connection",
+																	"value": "close"
+																}
+															],
+															"cookie": [],
+															"body": "{\n    \"mensaje\": \"Contraseña inválida.\"\n}"
+														},
+														{
+															"name": "sin letras",
+															"originalRequest": {
+																"method": "POST",
+																"header": [],
+																"body": {
+																	"mode": "raw",
+																	"raw": "{\r\n  \"name\": \"Juan Perez\",\r\n  \"email\": \"cristhian@gmail.com\",\r\n  \"password\": \"4567@123\",\r\n  \"phones\": [\r\n    {\r\n      \"number\": \"12345678\",\r\n      \"citycode\": \"1\",\r\n      \"contrycode\": \"57\"\r\n    }\r\n  ]\r\n}",
+																	"options": {
+																		"raw": {
+																			"language": "json"
+																		}
+																	}
+																},
+																"url": {
+																	"raw": "http://localhost:8080/auth/register",
+																	"protocol": "http",
+																	"host": [
+																		"localhost"
+																	],
+																	"port": "8080",
+																	"path": [
+																		"auth",
+																		"register"
+																	]
+																}
+															},
+															"status": "Bad Request",
+															"code": 400,
+															"_postman_previewlanguage": "json",
+															"header": [
+																{
+																	"key": "Vary",
+																	"value": "Origin"
+																},
+																{
+																	"key": "Vary",
+																	"value": "Access-Control-Request-Method"
+																},
+																{
+																	"key": "Vary",
+																	"value": "Access-Control-Request-Headers"
+																},
+																{
+																	"key": "X-Content-Type-Options",
+																	"value": "nosniff"
+																},
+																{
+																	"key": "X-XSS-Protection",
+																	"value": "0"
+																},
+																{
+																	"key": "Cache-Control",
+																	"value": "no-cache, no-store, max-age=0, must-revalidate"
+																},
+																{
+																	"key": "Pragma",
+																	"value": "no-cache"
+																},
+																{
+																	"key": "Expires",
+																	"value": "0"
+																},
+																{
+																	"key": "X-Frame-Options",
+																	"value": "DENY"
+																},
+																{
+																	"key": "Content-Type",
+																	"value": "application/json"
+																},
+																{
+																	"key": "Transfer-Encoding",
+																	"value": "chunked"
+																},
+																{
+																	"key": "Date",
+																	"value": "Thu, 07 Dec 2023 05:20:47 GMT"
+																},
+																{
+																	"key": "Connection",
+																	"value": "close"
+																}
+															],
+															"cookie": [],
+															"body": "{\n    \"mensaje\": \"Contraseña inválida.\"\n}"
+														}
+													]
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "exitoso",
+							"item": [
+								{
+									"name": "auth/register",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"name\": \"Cristhian Martinez\",\r\n  \"email\": \"cristhian3@gmail.com\",\r\n  \"password\": \"Test@123\",\r\n  \"phones\": [\r\n    {\r\n      \"number\": \"12345678\",\r\n      \"citycode\": \"1\",\r\n      \"contrycode\": \"57\"\r\n    }\r\n  ]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "http://localhost:8080/auth/register",
+											"protocol": "http",
+											"host": [
+												"localhost"
+											],
+											"port": "8080",
+											"path": [
+												"auth",
+												"register"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "created",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n  \"name\": \"Juan Perez\",\r\n  \"email\": \"cristhian@gmail.com\",\r\n  \"password\": \"Test@123\",\r\n  \"phones\": [\r\n    {\r\n      \"number\": \"12345678\",\r\n      \"citycode\": \"1\",\r\n      \"contrycode\": \"57\"\r\n    }\r\n  ]\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "http://localhost:8080/auth/register",
+													"protocol": "http",
+													"host": [
+														"localhost"
+													],
+													"port": "8080",
+													"path": [
+														"auth",
+														"register"
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "Vary",
+													"value": "Origin"
+												},
+												{
+													"key": "Vary",
+													"value": "Access-Control-Request-Method"
+												},
+												{
+													"key": "Vary",
+													"value": "Access-Control-Request-Headers"
+												},
+												{
+													"key": "X-Content-Type-Options",
+													"value": "nosniff"
+												},
+												{
+													"key": "X-XSS-Protection",
+													"value": "0"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, no-store, max-age=0, must-revalidate"
+												},
+												{
+													"key": "Pragma",
+													"value": "no-cache"
+												},
+												{
+													"key": "Expires",
+													"value": "0"
+												},
+												{
+													"key": "X-Frame-Options",
+													"value": "DENY"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												},
+												{
+													"key": "Date",
+													"value": "Thu, 07 Dec 2023 05:13:46 GMT"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=60"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"id\": \"6eee37b7-860b-47b6-83f2-5c96687d9956\",\n    \"name\": \"Juan Perez\",\n    \"email\": \"cristhian@gmail.com\",\n    \"password\": \"$2a$10$rPRiye.J/RJCx4Y7sm9taulFJOKNVDMfI9E3S0XomR/.OqBzxnrzi\",\n    \"phones\": [\n        {\n            \"number\": \"12345678\",\n            \"citycode\": \"1\",\n            \"contrycode\": \"57\"\n        }\n    ],\n    \"created\": \"2023-12-07T05:13:46.334+00:00\",\n    \"modified\": \"2023-12-07T05:13:46.334+00:00\",\n    \"token\": \"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjcmlzdGhpYW5AZ21haWwuY29tIiwiaWF0IjoxNzAxOTI2MDI2LCJleHAiOjE3MDE5Mjk2MjZ9.0HiHeuy-DixwATWoKr8yIUELOxm5k3RoD9VYQ6R3AYU\",\n    \"last_login\": \"2023-12-07T05:13:46.334+00:00\",\n    \"isactive\": true\n}"
+										}
+									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "auth/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"cristhian@gmail.com\",\r\n    \"password\":\"Test@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "demo",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjcmlzdGhpYW5AZ21haWwuY29tIiwiaWF0IjoxNzAxOTM0MDYxLCJleHAiOjE3MDE5Mzc2NjF9.NPuLNCiJ9EM_KaA6u2HxlnrUFtuT8yyU53hALAJpdvA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/demo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"demo"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
