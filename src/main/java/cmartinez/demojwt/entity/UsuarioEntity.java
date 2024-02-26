@@ -52,6 +52,5 @@ public class UsuarioEntity {
 
     @Column(name = "isactive")
     @JsonProperty("isactive")
-    private boolean IsActive;
+    private boolean isActive;
 }
-

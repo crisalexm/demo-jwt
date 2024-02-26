@@ -1,4 +1,4 @@
-package cmartinez.demojwt.service.JWT;
+package cmartinez.demojwt.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -58,5 +58,4 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
         return null;
     }
-
 }

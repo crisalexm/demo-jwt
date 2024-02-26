@@ -4,60 +4,30 @@ import cmartinez.demojwt.dto.AuthResponse;
 import cmartinez.demojwt.entity.UsuarioEntity;
 import cmartinez.demojwt.exception.UserValidationException;
 import cmartinez.demojwt.repository.UsuarioRepository;
-import cmartinez.demojwt.service.JWT.JwtService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import cmartinez.demojwt.strategies.validations.ValidationStrategy;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.regex.Pattern;
 
 @Service
-@RequiredArgsConstructor
 public class AuthService {
-    @Autowired
-    private JwtService jwtService;
-
-    @Value("${usuario.password.regex}")
-    private String passwordRegex;
-
-    @Value("${usuario.email.regex}")
-    private String emailRegex;
-
-    @Autowired
-    private UsuarioRepository usuarioRepository;
-
-    public UsuarioEntity crearUsuario(UsuarioEntity usuario) {
-        if (!isValidEmail(usuario.getEmail())) {
-            throw new UserValidationException("Correo electrónico inválido.");
-        }
-        if (!isValidPassword(usuario.getPassword())) {
-            throw new UserValidationException("Contraseña inválida.");
-        }
-
-        Optional<UsuarioEntity> existingUser = usuarioRepository.findByEmail(usuario.getEmail());
-        if (existingUser.isPresent()) {
-            throw new UserValidationException("El correo electrónico ya está en uso.");
-        }
-
-        usuario.setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
-        // Establecer las fechas
-        Date now = new Date();
-        usuario.setCreated(now);
-        usuario.setModified(now);
-        usuario.setLastLogin(now);
-
-        // Establecer isActive a true
-        usuario.setIsActive(true);
+    private final JwtService jwtService;
+    private final UsuarioRepository usuarioRepository;
 
 
-        String token = jwtService.generateToken(usuario.getEmail());
-        usuario.setToken(token);
-
-        return usuarioRepository.save(usuario);
+    public AuthService(
+            JwtService jwtService,
+            UsuarioRepository usuarioRepository) {
+        this.jwtService = jwtService;
+        this.usuarioRepository = usuarioRepository;
     }
+
+
 
     public AuthResponse autenticarUsuario(String email, String password) {
 
@@ -72,27 +42,5 @@ public class AuthService {
                 .jwt(token)
                 .build();
     }
-    public Map<String, Object> getAllUsers() {
-        List<UsuarioEntity> users = usuarioRepository.findAll();
-        Map<String, Object> response = new HashMap<>();
-        response.put("count", users.size());
-        response.put("users", users);
-        return response;
-    }
 
-    public boolean isValidPassword(String password) {
-
-        Pattern pattern = Pattern.compile(passwordRegex);
-        return pattern.matcher(password).matches();
-    }
-
-
-    public boolean isValidEmail(String email) {
-
-        if (email == null) {
-            return false;
-        }
-        Pattern pattern = Pattern.compile(emailRegex);
-        return pattern.matcher(email).matches();
-    }
 }

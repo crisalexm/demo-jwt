@@ -1,4 +1,4 @@
-package cmartinez.demojwt.service.JWT;
+package cmartinez.demojwt.service;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -16,10 +16,8 @@ public class JwtService {
     public String generateToken(String email) {
         long nowMillis = System.currentTimeMillis();
         Date now = new Date(nowMillis);
-        long expMillis = nowMillis + 3600000;
-        // Generar una clave segura de 256 bits
-//        byte[] keyBytes = Keys.secretKeyFor(SignatureAlgorithm.HS256).getEncoded();
-//        String secretKey = Base64.getEncoder().encodeToString(keyBytes);
+//        120000 2 min, 3600000 1 hora
+        long expMillis = nowMillis + 120000;
 
 
         return Jwts.builder()
@@ -30,4 +28,3 @@ public class JwtService {
                 .compact();
     }
 }
-
