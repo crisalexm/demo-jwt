@@ -1,5 +1,14 @@
 # Demo-jwt
-Este proyecto es una demostración de una API RESTful que utiliza JWT (JSON Web Tokens) para la autenticación y protección de endpoints. Permite el registro y autenticación de usuarios, donde cada usuario autenticado recibe un token para acceder a recursos protegidos.
+Este proyecto es una demostración de una API RESTful que utiliza JWT (JSON Web Tokens) para la autenticación y protección de endpoints. Permite el registro y autenticación de usuarios, donde cada usuario autenticado recibe un token para acceder a recursos protegidos.  Esta versión incluye documentación de la API con Swagger, pruebas unitarias para garantizar la calidad del código y más.
+
+## Características
+- Autenticación y gestión de usuarios con JWT.
+- Documentación completa de la API con Swagger.
+- Pruebas unitarias integradas para validar la lógica de negocio.
+- Configuración de seguridad con Spring Security.
+
+## Documentación de la API con Swagger
+Accede a la documentación completa de la API a través de Swagger en http://localhost:8080/swagger-ui.html, donde encontrarás todos los endpoints disponibles y podrás probarlos directamente desde tu navegador.
 
 ## Diagrama de solución
 ![Diagrama de solución](/images/diagrama-solucion.png)
@@ -27,11 +36,13 @@ Utiliza Postman o curl para enviar solicitudes HTTP a los endpoints. Para endpoi
 Para obtener un token, envía una solicitud POST a **auth/register** con los datos mock requeridos o **/auth/login** con las credenciales del usuario. Usa este token para acceder a endpoints protegidos.
 
 ## Endpoints
-| Método | Endpoint | Descripción | Protegido |
-| ------ | ------ | ------ | ------ |
-| POST | /auth/register | Registro de usuario | No |
-| POST | /auth/login | Inicio de sesión | No |
-| GET | /api/v1/demo | Obtener todos los usuarios | Sí |
+| Método | Endpoint                | Descripción                          | Protegido |
+|--------|-------------------------|--------------------------------------| ------ |
+| POST   | /auth/register          | Registro de usuario                  | No |
+| POST   | /auth/login             | Inicio de sesión                     | No |
+| GET    | /api/v1/demo/users      | Obtener todos los usuarios (paginable)          | Sí |
+| GET    | /api/v1/demo/users/{id} | Obtener usuario por id               | Sí |
+| DELETE | /api/v1/demo/users/{id} | Eliminar usuario por id especificado | Sí |
 
 ## Ejemplos
 ### Registro de usuario
