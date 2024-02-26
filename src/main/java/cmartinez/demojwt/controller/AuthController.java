@@ -4,7 +4,7 @@ import cmartinez.demojwt.dto.AuthResponse;
 import cmartinez.demojwt.dto.LoginDTO;
 import cmartinez.demojwt.service.AuthService;
 import cmartinez.demojwt.entity.UsuarioEntity;
-import cmartinez.demojwt.service.UserService;
+import cmartinez.demojwt.service.DemoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +22,7 @@ public class AuthController {
     private AuthService authService;
 
     @Autowired
-    private UserService userService;
+    private DemoService userService;
 
     @PostMapping("/login")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody LoginDTO request) {
@@ -32,7 +32,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<?> registrarUsuario(@Valid @RequestBody UsuarioEntity usuario) {
-            UsuarioEntity usuarioCreado = userService.createUser(usuario);
+            UsuarioEntity usuarioCreado = authService.createUser(usuario);
             return ResponseEntity.status(HttpStatus.CREATED).body(usuarioCreado);
     }
 }

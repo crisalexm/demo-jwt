@@ -16,18 +16,48 @@ import java.util.*;
 
 @Service
 public class AuthService {
-    private final JwtService jwtService;
+    private JwtService jwtService;
     private final UsuarioRepository usuarioRepository;
-
+    private final BCryptPasswordEncoder passwordEncoder;
+    private final ValidationService validationService;
 
     public AuthService(
-            JwtService jwtService,
-            UsuarioRepository usuarioRepository) {
-        this.jwtService = jwtService;
+            UsuarioRepository usuarioRepository,
+            ValidationService validationService,
+            BCryptPasswordEncoder passwordEncoder,
+            JwtService jwtService) {
         this.usuarioRepository = usuarioRepository;
+        this.validationService = validationService;
+        this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
     }
 
+    public UsuarioEntity createUser(UsuarioEntity user) {
+        validateEmailAndPassword(user);
 
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        Date now = new Date();
+        user.setCreated(now);
+        user.setModified(now);
+        user.setLastLogin(now);
+        user.setActive(true);
+
+        String token = jwtService.generateToken(user.getEmail());
+        user.setToken(token);
+
+        return usuarioRepository.save(user);
+    }
+
+    private void validateEmailAndPassword(UsuarioEntity user) {
+        if (!validationService.isValidEmail(user.getEmail()) || !validationService.isValidPassword(user.getPassword())) {
+            throw new UserValidationException("Correo electrónico o contraseña inválidos.");
+        }
+
+        Optional<UsuarioEntity> existingUser = usuarioRepository.findByEmail(user.getEmail());
+        if (existingUser.isPresent()) {
+            throw new UserValidationException("El email ya está en uso.");
+        }
+    }
 
     public AuthResponse autenticarUsuario(String email, String password) {
 

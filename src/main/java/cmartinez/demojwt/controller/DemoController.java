@@ -1,6 +1,6 @@
 package cmartinez.demojwt.controller;
-import cmartinez.demojwt.service.AuthService;
-import cmartinez.demojwt.service.UserService;
+
+import cmartinez.demojwt.service.DemoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class DemoController {
     @Autowired
-    UserService userService;
+    DemoService demoService;
 
     @GetMapping("/users")
     @Operation(security = { @SecurityRequirement(name = "bearer-key") })
@@ -26,20 +26,20 @@ public class DemoController {
             @RequestParam(defaultValue = "false") boolean includeInactive,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "5") int size) {
-        Map<String, Object> response = userService.getUsers(includeInactive, page, size);
+        Map<String, Object> response = demoService.getUsers(includeInactive, page, size);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/users/{userId}")
     @Operation(security = { @SecurityRequirement(name = "bearer-key") })
     public ResponseEntity<?> getUser(@PathVariable UUID userId) {
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(userService.getUserById(userId));
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(demoService.getUserById(userId));
     }
 
     @DeleteMapping("/users/{userId}")
     @Operation(security = { @SecurityRequirement(name = "bearer-key") })
     public ResponseEntity<?> deactivateUser(@PathVariable UUID userId) {
-        userService.deactivateUser(userId);
+        demoService.deactivateUser(userId);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body("User deactivated");
     }
 }
