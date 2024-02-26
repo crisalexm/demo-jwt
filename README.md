@@ -101,13 +101,15 @@ Pasando el token en el encabezado Authorization como Bearer {token}
 #### response
 ```bash
 {
-    "count": 2,
+    "totalItems": 1,
+    "totalPages": 1,
+    "currentPage": 0,
     "users": [
         {
-            "id": "a5cf56ba-4301-4e25-aec7-673d0935818c",
-            "name": "Cristhian Martinez",
-            "email": "cristhian2@gmail.com",
-            "password": "$2a$10$Sge4DmV9q6xzdcGwl7ohF.3l.zig2i3tkDnFajO53IGpcWOBeWVMK",
+            "id": "fca77ab8-4381-47f8-97cf-89a51eccbb47",
+            "name": "Cristhian Martínez",
+            "email": "cristhian@email.com",
+            "password": "$2a$10$SM4rev0tC9imBBcDCYFr5Om9/K3qPaXmx3oeve90PLBl2R0FWe/Du",
             "phones": [
                 {
                     "number": "12345678",
@@ -115,28 +117,10 @@ Pasando el token en el encabezado Authorization como Bearer {token}
                     "contrycode": "57"
                 }
             ],
-            "created": "2023-12-07T07:32:00.931+00:00",
-            "modified": "2023-12-07T07:32:00.931+00:00",
-            "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjcmlzdGhpYW4yQGdtYWlsLmNvbSIsImlhdCI6MTcwMTkzNDMyMCwiZXhwIjoxNzAxOTM3OTIwfQ.Cw0zuceZdB9Biuyd4tiYhocH5YgS4gsi0dzsQqzDkwE",
-            "last_login": "2023-12-07T07:32:00.931+00:00",
-            "isactive": true
-        },
-        {
-            "id": "c7ed6295-64d8-4dc2-bcce-f087344c94c4",
-            "name": "Cristhian Martinez",
-            "email": "cristhian3@gmail.com",
-            "password": "$2a$10$aP.8zjHzYZT1eu32KjAFTenjKE.jCaUDQiX0O30fACUhfoc7yzOU6",
-            "phones": [
-                {
-                    "number": "12345678",
-                    "citycode": "1",
-                    "contrycode": "57"
-                }
-            ],
-            "created": "2023-12-07T07:32:10.551+00:00",
-            "modified": "2023-12-07T07:32:10.551+00:00",
-            "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjcmlzdGhpYW4zQGdtYWlsLmNvbSIsImlhdCI6MTcwMTkzNDMzMCwiZXhwIjoxNzAxOTM3OTMwfQ.L9yiDE931eTZi3F3I2h8ELE4o-Ta6-Nxcj2w4d4AUoE",
-            "last_login": "2023-12-07T07:32:10.551+00:00",
+            "created": "2024-02-26T06:21:35.415+00:00",
+            "modified": "2024-02-26T06:21:35.415+00:00",
+            "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjcmlzdGhpYW5AZW1haWwuY29tIiwiaWF0IjoxNzA4OTI4NDk1LCJleHAiOjE3MDg5Mjg2MTV9.DbnTdRo49PPs9Dwae15gTQxwTqdO7fMtIIYoo44IxqE",
+            "last_login": "2024-02-26T06:21:35.415+00:00",
             "isactive": true
         }
     ]
