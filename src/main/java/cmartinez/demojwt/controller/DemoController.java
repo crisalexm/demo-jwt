@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
@@ -40,6 +41,9 @@ public class DemoController {
     @Operation(security = { @SecurityRequirement(name = "bearer-key") })
     public ResponseEntity<?> deactivateUser(@PathVariable UUID userId) {
         demoService.deactivateUser(userId);
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body("User deactivated");
+        Map<String, String> response = new HashMap<>();
+        response.put("mensaje", "Usuario desactivado.");
+
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
     }
 }
