@@ -1,0 +1,8 @@
+package cmartinez.demojwt.service;
+
+public enum ValidationType {
+    EMAIL,
+    PASSWORD,
+    USERNAME,
+    PHONE
+}

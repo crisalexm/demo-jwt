@@ -2,22 +2,31 @@ package cmartinez.demojwt.service;
 
 import cmartinez.demojwt.strategies.validations.ValidationStrategy;
 import org.springframework.stereotype.Service;
+import java.util.Map;
 
 @Service
 public class ValidationService {
-    private final ValidationStrategy emailValidationStrategy;
-    private final ValidationStrategy passwordValidationStrategy;
+    
+    private final Map<ValidationType, ValidationStrategy> validationStrategies;
 
-    public ValidationService(ValidationStrategy emailValidationStrategy, ValidationStrategy passwordValidationStrategy) {
-        this.emailValidationStrategy = emailValidationStrategy;
-        this.passwordValidationStrategy = passwordValidationStrategy;
+    public ValidationService(Map<ValidationType, ValidationStrategy> validationStrategies) {
+        this.validationStrategies = Map.copyOf(validationStrategies);
     }
 
+    public boolean validate(ValidationType type, String value) {
+        ValidationStrategy strategy = validationStrategies.get(type);
+        if (strategy == null) {
+            throw new IllegalArgumentException("No validation strategy found for type: " + type);
+        }
+        return strategy.isValid(value);
+    }
+    
+    // Métodos de conveniencia (opcional)
     public boolean isValidEmail(String email) {
-        return emailValidationStrategy.isValid(email);
+        return validate(ValidationType.EMAIL, email);
     }
 
     public boolean isValidPassword(String password) {
-        return passwordValidationStrategy.isValid(password);
+        return validate(ValidationType.PASSWORD, password);
     }
 }
